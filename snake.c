@@ -22,7 +22,7 @@ void snake_create(void)                                    /* Make the snake at 
     snake_tail->y = snake_head->y + 2;
     snake_tail->next = NULL;
     for(p = snake_head; p != NULL; p = p->next)
-        goprint(p->x, p->y, "¡ö");
+        goprint(p->x, p->y, "■");
 }
 
 void snake_control(void)
@@ -45,7 +45,7 @@ void snake_control(void)
         }
         snake_move();
     }
-    goprint(snake_head->x, snake_head->y, "¡Á");
+    goprint(snake_head->x, snake_head->y, " ");
 }
 
 void snake_move(void)
@@ -137,7 +137,7 @@ void snake_move(void)
     snake_tail->next = NULL;
     snake_head->x = front.x;
     snake_head->y = front.y;
-    goprint(snake_head->x, snake_head->y, "¡ö");
+    goprint(snake_head->x, snake_head->y, "■");
 }
 
 void snake_free(void)
