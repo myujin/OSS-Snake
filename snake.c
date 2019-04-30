@@ -22,7 +22,7 @@ void snake_create(void)                                    /* Make the snake at 
     snake_tail->y = snake_head->y + 2;
     snake_tail->next = NULL;
     for(p = snake_head; p != NULL; p = p->next)
-        goprint(p->x, p->y, "■");
+        goprint(p->x, p->y, "io");
 }
 
 void snake_control(void)
@@ -117,7 +117,7 @@ void snake_move(void)
         *temp = front;
         temp->next = snake_head;
         snake_head = temp;
-        goprint(snake_head->x, snake_head->y, "¡ö");
+        goprint(snake_head->x, snake_head->y, "io");
         if(front.x == award_food.x){
             score += award_score / 2 * level;
             award_food.x = -1, award_food.y = -1, award_score = 100;
@@ -130,14 +130,14 @@ void snake_move(void)
         }
         return;
     }
-    goprint(snake_tail->x, snake_tail->y, "  ");
+    goprint(snake_tail->x, snake_tail->y, " ");
     snake_tail->next = snake_head;
     snake_head = snake_tail;
     snake_tail = temp;
     snake_tail->next = NULL;
     snake_head->x = front.x;
     snake_head->y = front.y;
-    goprint(snake_head->x, snake_head->y, "■");
+    goprint(snake_head->x, snake_head->y, "io");
 }
 
 void snake_free(void)
