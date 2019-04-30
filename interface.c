@@ -10,7 +10,7 @@ void welcome(void)
     lose = 0, level = 3, map_size = 30, score = 0, award = 0, margin = map_size + 5;
     control = 'w', direction = 'w';
     int opt;
-    char map_choice;
+    char map_choice= NULL;
     goprint(4, 4, "Welcome to the Snake by Lst");
     goprint(6, 6, "Start by number:\n\n");
     printf("1. Quick game\n2. Customized game\n3. Exit\n\n*** Please play in English Input Method ***\n");
