@@ -1,4 +1,4 @@
-##Introduction to OSS team Project - SnakeGame
+Introduction to OSS team Project - SnakeGame
 
 세종대학교 오픈소스SW 과목 팀 프로젝트입니다.
 Snake-Game을 주제로 하여 기존의 SnakeGame 프로젝트를
