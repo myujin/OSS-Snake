@@ -1,9 +1,11 @@
 #include "interface.h"
-
+#pragma warning(disable:4996)
 extern FOOD award_food;
 extern int lose, level, map_size, award, award_score;
 extern char control, direction;
+
 int margin;
+
 
 void welcome(void)
 {
@@ -53,7 +55,7 @@ void show_score(void)
 {
     if(award == 5){
         goprint(margin, 13, "Award Food:");
-        goprint(margin, 14, "¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€");
+        goprint(margin, 14, "??????????");
         award_score = 100;
         award = 0;
     }

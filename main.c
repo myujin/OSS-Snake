@@ -4,6 +4,7 @@
 #include "snake.h"
 #include "food.h"
 #include "interface.h"
+#pragma warning(disable:4996)
 
 int main()
 {

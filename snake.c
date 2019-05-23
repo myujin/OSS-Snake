@@ -45,11 +45,7 @@ void snake_control(void)
         }
         snake_move();
     }
-<<<<<<< HEAD
-    goprint(snake_head->x, snake_head->y, " ");
-=======
-    goprint(snake_head->x, snake_head->y, "iA");
->>>>>>> origin/master
+    goprint(snake_head->x, snake_head->y, "  ");
 }
 
 void snake_move(void)
@@ -134,7 +130,7 @@ void snake_move(void)
         }
         return;
     }
-    goprint(snake_tail->x, snake_tail->y, " ");
+    goprint(snake_tail->x, snake_tail->y, "  ");
     snake_tail->next = snake_head;
     snake_head = snake_tail;
     snake_tail = temp;
