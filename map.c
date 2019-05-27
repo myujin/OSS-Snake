@@ -10,10 +10,10 @@ void map_boundary(int Map_Size)                             /* Print the boundar
     boundary.x = Map_Size;
     boundary.y = Map_Size;
     for(i = 0; i < Map_Size; i ++)
-        goprint(Map_Size, i, "©ª");
+        goprint(Map_Size, i, "¦­");
     for(i = 0; i < Map_Size; i ++)
-        goprint(i, Map_Size, "©¨");
-    goprint(Map_Size, Map_Size, "©¼");
+        goprint(i, Map_Size, "¦¬");
+    goprint(Map_Size, Map_Size, "¦°");
 }
 
 void map_block(int Map_Size)                      /* Print the outer blocks */
