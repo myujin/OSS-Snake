@@ -11,6 +11,7 @@ int main()
     while(1)
     {
         welcome();
+		removeCursor();
         tips();
         map_boundary(map_size);
         snake_create();

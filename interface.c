@@ -9,6 +9,7 @@ int margin;
 
 void welcome(void)
 {
+	system("mode con cols=55 lines=20");
     lose = 0, level = 3, map_size = 30, score = 0, award = 0, margin = map_size + 5;
     control = 'w', direction = 'w';
     int opt;
@@ -38,11 +39,12 @@ void welcome(void)
     }
     system("cls");
     if(map_choice == 'y' || map_choice == 'Y')
-        map_0(map_size);
+        map_block(map_size);
 }
 
 void tips(void)
 {
+	system("mode con cols=140 lines=40");
     gotoxy(margin, 5);
     printf("Level: %d", level);
     gotoxy(margin, 7);
@@ -96,4 +98,12 @@ void progress_bar(void)
         goprint(award_food.x, award_food.y, "  ");
         award_food.x = -1, award_food.y = -1;
     }
+}
+
+void removeCursor()
+{
+	CONSOLE_CURSOR_INFO curInfo;
+	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
+	curInfo.bVisible = 0;
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
 }
