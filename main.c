@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<stdlib.h>
 #include "goprint.h"
 #include "map.h"
 #include "snake.h"
@@ -11,6 +12,7 @@ int main()
     while(1)
     {
         welcome();
+		removeCursor();
         tips();
         map_boundary(map_size);
         snake_create();

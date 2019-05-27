@@ -1,4 +1,5 @@
 #include "snake.h"
+#include<stdlib.h>
 
 extern int award_score, map_size;
 extern FOOD food, award_food;
