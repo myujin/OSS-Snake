@@ -1,11 +1,11 @@
 #include "map.h"
 
-BOUNDARY boundary = {0, 0};
 BLOCK *block_head = NULL;
 int map_size = 50;
 
 void map_boundary(int Map_Size)                             /* Print the boundary of the map */
 {
+	BOUNDARY boundary = {0, 0};
     int i;
     boundary.x = Map_Size;
     boundary.y = Map_Size;
