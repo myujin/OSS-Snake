@@ -39,7 +39,7 @@ void welcome(void)
     }
     system("cls");
     if(map_choice == 'y' || map_choice == 'Y')
-        map_0(map_size);
+        map_block(map_size);
 }
 
 void tips(void)
