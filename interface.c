@@ -39,7 +39,7 @@ void welcome(void)
     }
     system("cls");
     if(map_choice == 'y' || map_choice == 'Y')
-        map_0(map_size);
+        map_block(map_size);
 }
 
 void tips(void)
@@ -98,4 +98,12 @@ void progress_bar(void)
         goprint(award_food.x, award_food.y, "  ");
         award_food.x = -1, award_food.y = -1;
     }
+}
+
+void removeCursor()
+{
+	CONSOLE_CURSOR_INFO curInfo;
+	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
+	curInfo.bVisible = 0;
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
 }
