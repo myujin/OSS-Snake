@@ -1,5 +1,4 @@
 #include "map.h"
-#include<stdlib.h>
 
 BLOCK *block_head = NULL;
 int map_size = 50;
