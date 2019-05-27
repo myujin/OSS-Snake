@@ -88,12 +88,12 @@ void snake_move(void)
                 break;
     }
     if(front.x == map_size)                                /* Here we allow the snake to penetrate the boundary */
-        front.x = 0;
-    if(front.x == -1)
+        front.x = 1;
+    if(front.x == 0)
         front.x = map_size - 1;
     if(front.y == map_size)
-        front.y = 0;
-    if(front.y == -1)
+        front.y = 1;
+    if(front.y == 0)
         front.y = map_size - 1;
     for(p1 = snake_head, p2 = block_head; p1 != snake_tail || p2 != NULL;){
         if(p1 != snake_tail){
