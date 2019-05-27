@@ -1,4 +1,5 @@
 #include "map.h"
+#include<stdlib.h>
 
 BLOCK *block_head = NULL;
 int map_size = 50;
@@ -10,14 +11,17 @@ void map_boundary(int Map_Size)                             /* Print the boundar
     boundary.x = Map_Size;
     boundary.y = Map_Size;
     for(i = 0; i < Map_Size; i ++)
-        goprint(Map_Size, i, "A");
+        goprint(Map_Size, i, "H");
+
     for(i = 0; i < Map_Size; i ++)
-        goprint(i, Map_Size, "B");
+        goprint(i, Map_Size, "H");
+
 	for (i = 0; i < Map_Size; i++)
-		goprint(0, i, "C");
+		goprint(0, i, "H");
 	for (i = 1; i < Map_Size; i++)
-		goprint(i, 0, "D");
-    goprint(Map_Size, Map_Size, "E");
+		goprint(i, 0, "H");
+
+    goprint(Map_Size, Map_Size, "H");
 }
 
 void map_block(int Map_Size)                      /* Print the outer blocks */

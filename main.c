@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<stdlib.h>
 #include "goprint.h"
 #include "map.h"
 #include "snake.h"
