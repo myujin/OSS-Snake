@@ -9,6 +9,7 @@ int lose = 0, score = 0, level = 3;
 
 void snake_create(void)                                    /* Make the snake at the beginning */
 {
+
     SNAKE *p = NULL;
     snake_head = (SNAKE *)malloc(sizeof(SNAKE));
     snake_head->x = map_size / 2;
@@ -24,29 +25,30 @@ void snake_create(void)                                    /* Make the snake at 
     snake_tail->next = NULL;
     for(p = snake_head; p != NULL; p = p->next)
         goprint(p->x, p->y, "o");
+
 }
 
 void snake_control(void)
 {
-    while(!lose){
-        Sleep(600 / level);
-        if(award_food.x != -1)
-            progress_bar();
-        if(_kbhit()){
+	while (!lose) {
+		Sleep(600 / level);
+		if (award_food.x != -1)
+			progress_bar();
+		if (_kbhit()) {
 			control = _getch();
-			if(control == 'p' || control == 'P')
-                break;
-			if(control == 'w' || control == 's' || control == 'a' || control == 'd' || control == 'W' || control == 'S' || control == 'A' || control == 'D'){
-                if((direction == 'w' || direction == 'W') && (control == 's' || control == 'S')) ;
-                else if((direction == 's' || direction == 'S') && (control == 'w' || control == 'W')) ;
-                else if((direction == 'a' || direction == 'A') && (control == 'd' || control == 'D')) ;
-                else if((direction == 'd' || direction == 'D') && (control == 'a' || control == 'A')) ;
-                else direction = control;
+			if (control == 'p' || control == 'P')
+				break;
+			if (control == 'w' || control == 's' || control == 'a' || control == 'd' || control == 'W' || control == 'S' || control == 'A' || control == 'D') {
+				if ((direction == 'w' || direction == 'W') && (control == 's' || control == 'S'));
+				else if ((direction == 's' || direction == 'S') && (control == 'w' || control == 'W'));
+				else if ((direction == 'a' || direction == 'A') && (control == 'd' || control == 'D'));
+				else if ((direction == 'd' || direction == 'D') && (control == 'a' || control == 'A'));
+				else direction = control;
 			}
-        }
-        snake_move();
-    }
-    goprint(snake_head->x, snake_head->y, "  ");
+		}
+		snake_move();
+	}
+	goprint(snake_head->x, snake_head->y, "  ");
 }
 
 void snake_move(void)
@@ -139,13 +141,14 @@ void snake_move(void)
     snake_head->x = front.x;
     snake_head->y = front.y;
     goprint(snake_head->x, snake_head->y, "o");
+
 }
 
 void snake_free(void)
 {
-    SNAKE *p1, *p2;
-    for(p1 = snake_head, p2 = p1; p1 != NULL; p2 = p1){
-        p1 = p1->next;
-        free(p2);
-    }
+	SNAKE *p1, *p2;
+	for (p1 = snake_head, p2 = p1; p1 != NULL; p2 = p1) {
+		p1 = p1->next;
+		free(p2);
+	}
 }
