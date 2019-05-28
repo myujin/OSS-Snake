@@ -30,8 +30,8 @@ void map_block(int Map_Size)                      /* Print the outer blocks */
     BLOCK *p = NULL;
     block_head = (BLOCK *)malloc(sizeof(BLOCK));
     for(i = 0, p = block_head; i < Map_Size; i ++){
-        goprint(i, 0, "H");
-        p->x = i, p->y = 0;
+        goprint(i, 1, "H");
+        p->x = i, p->y = 1;
         p->next = (BLOCK *)malloc(sizeof(BLOCK));
         p = p->next;
         goprint(i, Map_Size - 1, "H");
@@ -40,8 +40,8 @@ void map_block(int Map_Size)                      /* Print the outer blocks */
         p = p->next;
     }
     for(i = 1; i < Map_Size - 1; i ++){
-        goprint(0, i, "H");
-        p->x = 0, p->y = i;
+        goprint(1, i, "H");
+        p->x = 1, p->y = i;
         p->next = (BLOCK *)malloc(sizeof(BLOCK));
         p = p->next;
         goprint(Map_Size - 1, i, "H");
@@ -53,6 +53,7 @@ void map_block(int Map_Size)                      /* Print the outer blocks */
         p->next = (BLOCK *)malloc(sizeof(BLOCK));
         p = p->next;
     }
+
     for(p = block_head; p != NULL; p = p->next);
 }
 
