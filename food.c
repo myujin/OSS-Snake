@@ -10,10 +10,8 @@ void food_create(void)
 {
     SNAKE *p1;
     BLOCK *p2;
-    int sign = 0;
+    int sign = 1;
     do{
-        if(sign)
-            sign = 0;
         srand(time(NULL));
         food.x = rand() % map_size;
         food.y = rand() % map_size;
@@ -23,7 +21,16 @@ void food_create(void)
         }
         if(award_food.x == food.x && award_food.y == food.y)
             continue;
+		if (food.x == 0 || food.y == 0 || award_food.x == 0 || award_food.y == 0)
+			continue;
+
+		//이 코드의 위치에 따라 다른 버그가 발생함.. 조건문에 따라서 sign 변수값을 각각 다르게 작성해주어야 할 것 같음 
+		//if (sign)
+		//	sign = 0;
+		sign = 0;
+
         for(p1 = snake_head, p2 = block_head; p1 != NULL || p2 != NULL;){
+
             if(p1 != NULL){
                 if((food.x == p1->x && food.y == p1->y) || (award_food.x == p1->x && award_food.y == p1->y)){
                     sign = 1;
@@ -39,6 +46,7 @@ void food_create(void)
                 p2 = p2->next;
             }
         }
+		
     }while(sign);
     goprint(food.x, food.y, "∵");
     if(award == 5)

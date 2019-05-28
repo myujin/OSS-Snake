@@ -9,20 +9,20 @@
 
 int main()
 {
-    while(1)
-    {
-        welcome();
+	while (1)
+	{
+		welcome();
 		removeCursor();
-        tips();
-        map_boundary(map_size);
-        snake_create();
-        food_create();
-        _getch();
-        snake_control();
-        snake_free();
-        if(block_head != NULL)
-            block_free();
-        quit();
-    }
-    return 0;
+		tips();
+		map_boundary(map_size);
+		snake_create();
+		food_create();
+		_getch();
+		snake_control();
+		snake_free();
+		if (block_head != NULL)
+			block_free();
+		quit();
+	}
+	return 0;
 }
