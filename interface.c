@@ -10,7 +10,6 @@ int margin;
 
 void welcome(void)
 {
-	system("mode con cols=140 lines=40");
     lose = 0, level = 3, map_size = 30, score = 0, award = 0, margin = map_size + 5;
     control = 'w', direction = 'w';
     int opt;
@@ -45,7 +44,6 @@ void welcome(void)
 
 void tips(void)
 {
-	system("mode con cols=140 lines=40");
     gotoxy(margin, 5);
     printf("Level: %d", level);
     gotoxy(margin, 7);
