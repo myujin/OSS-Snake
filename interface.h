@@ -12,5 +12,7 @@ void tips(void);
 void show_score(void);
 void quit(void);
 void progress_bar(void);
+void removeCursor(void);
+void setConsoleSize(int w, int h);
 
 #endif // INTERFACE_H_INCLUDED

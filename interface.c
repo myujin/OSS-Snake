@@ -10,7 +10,7 @@ int margin;
 
 void welcome(void)
 {
-	system("mode con cols=140 lines=40");
+	setConsoleSize(55,20);
     lose = 0, level = 3, map_size = 30, score = 0, award = 0, margin = map_size + 5;
     control = 'w', direction = 'w';
     int opt;
@@ -45,7 +45,7 @@ void welcome(void)
 
 void tips(void)
 {
-	system("mode con cols=140 lines=40");
+	setConsoleSize(140, 40);
     gotoxy(margin, 5);
     printf("Level: %d", level);
     gotoxy(margin, 7);
@@ -107,4 +107,17 @@ void removeCursor()
 	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
 	curInfo.bVisible = 0;
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
+}
+
+void setConsoleSize(int w, int h) { // 열, 행 
+	COORD temp = { 999, 999 };
+	COORD siz = { w,h };
+	SMALL_RECT sr;
+	sr.Left = 0;
+	sr.Top = 0;
+	sr.Right = w - 1;
+	sr.Bottom = h - 1;
+	SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), temp);
+	SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &sr);
+	SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), siz);
 }
