@@ -65,11 +65,35 @@ SNAKE check_stage_collision(SNAKE front)
 	return tmp;
 }
 
-void snake_move(void)
+int check_Gameover(SNAKE * snake_head)
 {
-
 	SNAKE *p1;
 	BLOCK *p2;
+	int lose = 0;
+
+	for (p1 = snake_head, p2 = block_head; p1 != snake_tail || p2 != NULL;) {
+		if (p1 != snake_tail) {
+			if (front.x == p1->x && front.y == p1->y) {
+				lose = 1;
+				break;
+			}
+			if (p1->next == snake_tail)
+				temp = p1;
+			p1 = p1->next;
+		}
+		if (p2 != NULL) {
+			if (front.x == p2->x && front.y == p2->y) {
+				lose = 1;
+				break;
+			}
+			p2 = p2->next;
+		}
+	}
+	return lose;
+}
+
+void snake_move(void)
+{
 	switch (direction) {
 	case 'w':
 		front.x = snake_head->x;
@@ -106,27 +130,13 @@ void snake_move(void)
 	}
 	
 	front = check_stage_collision(front);
+	lose = check_Gameover(snake_head);
+	if (lose == 1)
+		return;
 
-	for (p1 = snake_head, p2 = block_head; p1 != snake_tail || p2 != NULL;) {
-		if (p1 != snake_tail) {
-			if (front.x == p1->x && front.y == p1->y) {
-				lose = 1;
-				return;
-			}
-			if (p1->next == snake_tail)
-				temp = p1;
-			p1 = p1->next;
-		}
-		if (p2 != NULL) {
-			if (front.x == p2->x && front.y == p2->y) {
-				lose = 1;
-				return;
-			}
-			p2 = p2->next;
-		}
-	}
+	if ((front.x == food.x && front.y == food.y) || (front.x == bonus_food.x && front.y == bonus_food.y)) 
+	{
 
-	if ((front.x == food.x && front.y == food.y) || (front.x == bonus_food.x && front.y == bonus_food.y)) {
 		temp = (SNAKE *)malloc(sizeof(SNAKE));
 		*temp = front;
 		temp->next = snake_head;
@@ -138,11 +148,12 @@ void snake_move(void)
 			notice_bonus();
 		}
 		else {
-			//bonus++;
+			bonus++;
 			score += level;
 			food_create();
 		}
 		return;
+		//return ÇÊ¿äÇÔ 
 	}
 	goprint(snake_tail->x, snake_tail->y, "  ");
 	snake_tail->next = snake_head;

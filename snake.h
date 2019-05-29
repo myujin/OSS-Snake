@@ -21,6 +21,7 @@ int score, level;
 
 
 SNAKE check_stage_collision(SNAKE front);
+int check_Gameover(SNAKE * snake_head);
 void snake_create(void);
 void snake_control(void);
 void snake_move(void);
