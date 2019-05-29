@@ -19,6 +19,8 @@ typedef struct SNAKE {
 SNAKE *snake_head, *snake_tail;
 int score, level;
 
+
+SNAKE check_stage_collision(SNAKE front);
 void snake_create(void);
 void snake_control(void);
 void snake_move(void);

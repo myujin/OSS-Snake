@@ -51,6 +51,20 @@ void snake_control(void)
 	goprint(snake_head->x, snake_head->y, "  ");
 }
 
+SNAKE check_stage_collision(SNAKE front)
+{
+	SNAKE tmp = front;
+	if (tmp.x == map_size)
+		tmp.x = 1;
+	if (tmp.x == 0)
+		tmp.x = map_size - 1;
+	if (tmp.y == map_size)
+		tmp.y = 1;
+	if (tmp.y == 0)
+		tmp.y = map_size - 1;
+	return tmp;
+}
+
 void snake_move(void)
 {
 
@@ -90,16 +104,9 @@ void snake_move(void)
 		front.y = snake_head->y;
 		break;
 	}
-	/*
-	if (front.x == map_size)                                
-		front.x = 1;
-	if (front.x == 0)
-		front.x = map_size - 1;
-	if (front.y == map_size)
-		front.y = 1;
-	if (front.y == 0)
-		front.y = map_size - 1;
-	*/
+	
+	front = check_stage_collision(front);
+
 	for (p1 = snake_head, p2 = block_head; p1 != snake_tail || p2 != NULL;) {
 		if (p1 != snake_tail) {
 			if (front.x == p1->x && front.y == p1->y) {
@@ -124,7 +131,7 @@ void snake_move(void)
 		*temp = front;
 		temp->next = snake_head;
 		snake_head = temp;
-		goprint(snake_head->x, snake_head->y, "io");
+		goprint(snake_head->x, snake_head->y, "o");
 		if (front.x == bonus_food.x) {
 			score += bonus_score / 2 * level;
 			bonus_food.x = -1, bonus_food.y = -1, bonus_score = 100;
@@ -144,7 +151,7 @@ void snake_move(void)
 	snake_tail->next = NULL;
 	snake_head->x = front.x;
 	snake_head->y = front.y;
-	goprint(snake_head->x, snake_head->y, "io");
+	goprint(snake_head->x, snake_head->y, "o");
 
 }
 
