@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 BLOCK *block_head = NULL;
-int map_size = 50;
+
 
 void map_boundary(int Map_Size)                             /* Print the boundary of the map */
 {

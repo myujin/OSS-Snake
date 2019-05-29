@@ -18,6 +18,6 @@ FOOD food, bonus_food;
 int bonus, bonus_score;
 int check_Food_collision();
 
-void food_create(void);
+//void food_create(gameData data);
 
 #endif // FOOD_H_INCLUDED

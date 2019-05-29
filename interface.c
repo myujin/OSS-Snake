@@ -2,34 +2,49 @@
 #include<stdlib.h>
 #pragma warning(disable:4996)
 extern FOOD bonus_food;
-extern int lose, level, map_size, bonus, bonus_score;
-extern char control, direction;
+//extern int lose, level, map_size, bonus, bonus_score;
+//extern char control, direction;
 
-int margin;
+//int margin;
 
+gameData set_GameData(gameData data)
+{
+	//lose = 0, level = 3, map_size = 30, score = 0, bonus = 0, margin = map_size + 5;
+	data.lose = 0; data.level = 3; data.map_size = 30; data.bonus = 0;
+	data.margin = data.map_size + 5; data.score = 0; data.bonus_score = 0;
+	data.control = 'w'; data.direction = 'w';
 
-void welcome(void)
+	return data;
+}
+
+gameData welcome(gameData data)
 {
 	setConsoleSize(55, 20);
-	lose = 0, level = 3, map_size = 30, score = 0, bonus = 0, margin = map_size + 5;
-	control = 'w', direction = 'w';
+
+	//data = set_GameData(data);
+	//lose = 0, level = 3, map_size = 30, score = 0, bonus = 0, margin = map_size + 5;
+	//control = 'w', direction = 'w';
 	int opt;
 	char map_choice = NULL;
+
 	goprint(4, 4, "Welcome to the Snake by Lst");
 	goprint(6, 6, "Start by number:\n\n");
 	printf("1. Quick game\n2. Customized game\n3. Exit\n\n*** Please play in English Input Method ***\n");
+
 	opt = _getch() - '0';
 	switch (opt) {
 	case 1:
 		break;
 	case 2:
 		printf("\nChoose level from 1 to 9 or... (Press Enter):");
-		scanf("%d", &level);
+		scanf("%d", &data.level);
+
 		do {
 			printf("\nInput map size no less than 5 (Press Enter):");
-			scanf("%d", &map_size);
-			margin = map_size + 5;
-		} while (map_size < 5);
+			scanf("%d", &data.map_size);
+			data.margin = data.map_size + 5;
+		} while (data.map_size < 5);
+
 		getchar();
 		printf("\nDo you want to create the boundary blocks? Y / N:");
 		map_choice = getchar();
@@ -37,65 +52,75 @@ void welcome(void)
 		break;
 	case 3:
 		exit(0);
+		break;
+	default:
+		break;
 	}
 	system("cls");
+	//map_choice에 대한 기능 개선이 필요해 보임 
 	if (map_choice == 'y' || map_choice == 'Y')
-		map_block(map_size);
+		map_block(data.map_size);
+
+	return data;
 }
 
-void tips(void)
+void tips(gameData data)
 {
 	setConsoleSize(140, 40);
-	gotoxy(margin, 5);
-	printf("Level: %d", level);
-	gotoxy(margin, 7);
-	printf("Map size: %d * %d", map_size, map_size);
-	goprint(margin, 9, "Play with \"wsad\"");
-	goprint(margin, 11, "Click to pause / Press \"wsad\" to continue / Press 'p' to quit");
+	gotoxy(data.margin, 5);
+	printf("Level: %d", data.level);
+	gotoxy(data.margin, 7);
+	printf("Map size: %d * %d", data.map_size, data.map_size);
+	goprint(data.margin, 9, "Play with \"wsad\"");
+	goprint(data.margin, 11, "Click to pause / Press \"wsad\" to continue / Press 'p' to quit");
 }
 
-void notice_bonus(void)
+gameData notice_bonus(gameData data)
 {
-	if (bonus == 5) {
-		goprint(margin, 13, "Award Food:");
-		goprint(margin, 14, "0 0 0 0 0 ");
-		bonus_score = 100;
-		bonus = 0;
+	if (data.bonus == 5) {
+		goprint(data.margin, 13, "Award Food:");
+		goprint(data.margin, 14, "0 0 0 0 0 ");
+		data.bonus_score = 100;
+		data.bonus = 0;
 	}
 	if (bonus_food.x == -1) {
-		gotoxy(margin, 13);
+		gotoxy(data.margin, 13);
 		printf("           ");
-		gotoxy(margin, 14);
+		gotoxy(data.margin, 14);
 		printf("                    ");
 	}
-	gotoxy(margin, 3);
-	printf("Your score: %d", score);
+	gotoxy(data.margin, 3);
+	printf("Your score: %d", data.score);
+
+	return data;
 }
 
-void quit(void)
+void quit(gameData data)
 {
-	if (lose) {
+	if (data.lose) {
 		system("color 01");
 		Sleep(100);
 		system("color 0F");
-		goprint(map_size / 2 - 2, map_size / 2 - 3, "You lose!");
+		goprint(data.map_size / 2 - 2, data.map_size / 2 - 3, "You lose!");
 	}
 	else
-		goprint(map_size / 2 - 2, map_size / 2 - 3, "You quit!");
-	gotoxy(map_size / 2 - 4, map_size / 2 - 1);
-	printf("Your score: %5d", score);
-	goprint(map_size / 2 - 6, map_size / 2 + 1, " Press Enter to continue");
+		goprint(data.map_size / 2 - 2, data.map_size / 2 - 3, "You quit!");
+
+	gotoxy(data.map_size / 2 - 4, data.map_size / 2 - 1);
+	printf("Your score: %5d", data.score);
+	goprint(data.map_size / 2 - 6, data.map_size / 2 + 1, " Press Enter to continue");
+
 	gotoxy(0, 0);
 	while (getchar() != '\n');
 	system("cls");
 }
 
-void progress_bar(void)
+void progress_bar(gameData data)
 {
-	goprint(margin + bonus_score / 10, 14, " ");
-	if ((bonus_score--) == 0) {
-		goprint(margin, 13, "           ");
-		goprint(margin, 14, "                    ");
+	goprint(data.margin + data.bonus_score / 10, 14, " ");
+	if ((data.bonus_score--) == 0) {
+		goprint(data.margin, 13, "           ");
+		goprint(data.margin, 14, "                    ");
 		goprint(bonus_food.x, bonus_food.y, "  ");
 		bonus_food.x = -1, bonus_food.y = -1;
 	}

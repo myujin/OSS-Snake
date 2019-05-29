@@ -16,16 +16,20 @@ typedef struct SNAKE {
     struct SNAKE *next;
 } SNAKE;
 
+
 SNAKE *snake_head, *snake_tail;
 int score, level;
 
 
-SNAKE* check_get_Food(SNAKE front, SNAKE * snake_head);
+//SNAKE* check_get_Food(SNAKE front, SNAKE * snake_head,gameData data);
 int check_Gameover(SNAKE * snake_head);
 
-void snake_create(void);
-void snake_control(void);
-void snake_move(void);
+
+/*
+void snake_create(gameData data);
+void snake_control(gameData data);
+void snake_move(gameData data);
 void snake_free(void);
+*/
 
 #endif // SNAKE_H_INCLUDED

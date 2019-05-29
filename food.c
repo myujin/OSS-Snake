@@ -2,9 +2,9 @@
 
 extern SNAKE *snake_head;
 extern BLOCK *block_head;
-extern int map_size;
+//extern int map_size;
 FOOD food = {0, 0}, bonus_food = {-1, -1};
-int bonus = 0, bonus_score;
+//int bonus = 0, bonus_score;
 
 int check_Food_collision()
 {
@@ -32,18 +32,18 @@ int check_Food_collision()
 	return sign;
 }
 
-void food_create(void)
+void food_create(gameData data)
 {
     int sign = 1;
 
     do{
         srand(time(NULL));
-        food.x = rand() % map_size;
-        food.y = rand() % map_size;
+        food.x = rand() % data.map_size;
+        food.y = rand() % data.map_size;
 
         if(bonus == 5){ 
-            bonus_food.x = rand() % map_size;
-            bonus_food.y = rand() % map_size;
+            bonus_food.x = rand() % data.map_size;
+            bonus_food.y = rand() % data.map_size;
         }
 
         if(bonus_food.x == food.x && bonus_food.y == food.y)
@@ -65,5 +65,5 @@ void food_create(void)
     goprint(food.x, food.y, "бё");
     if(bonus == 5)
         goprint(bonus_food.x, bonus_food.y, "бя");
-    notice_bonus();
+    data=notice_bonus(data);
 }
