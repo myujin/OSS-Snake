@@ -16,6 +16,7 @@ typedef struct FOOD {
 
 FOOD food, bonus_food;
 int bonus, bonus_score;
+int check_Food_collision();
 
 void food_create(void);
 

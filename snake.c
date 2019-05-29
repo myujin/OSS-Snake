@@ -92,8 +92,37 @@ int check_Gameover(SNAKE * snake_head)
 	return lose;
 }
 
+/*
+SNAKE* check_Food_Collision(SNAKE front,SNAKE * snake_head)
+{
+	if ((front.x == food.x && front.y == food.y) || (front.x == bonus_food.x && front.y == bonus_food.y))
+	{
+
+		temp = (SNAKE *)malloc(sizeof(SNAKE));
+		*temp = front;
+		temp->next = snake_head;
+		snake_head = temp;
+		goprint(snake_head->x, snake_head->y, "o");
+		if (front.x == bonus_food.x) {
+			score += bonus_score / 2 * level;
+			bonus_food.x = -1, bonus_food.y = -1, bonus_score = 100;
+			notice_bonus();
+		}
+		else {
+			bonus++;
+			score += level;
+			food_create();
+		}
+		return ;
+		//return 필요함 
+	}
+}
+*/
+
 void snake_move(void)
 {
+	int flag = 0;
+
 	switch (direction) {
 	case 'w':
 		front.x = snake_head->x;
@@ -133,8 +162,9 @@ void snake_move(void)
 	lose = check_Gameover(snake_head);
 	if (lose == 1)
 		return;
-
-	if ((front.x == food.x && front.y == food.y) || (front.x == bonus_food.x && front.y == bonus_food.y)) 
+	//snake_head = check_Food_Collision(front, snake_head);
+	//밑에 조건문을 함수로 분리하고자 함.... 
+	if ((front.x == food.x && front.y == food.y) || (front.x == bonus_food.x && front.y == bonus_food.y))
 	{
 
 		temp = (SNAKE *)malloc(sizeof(SNAKE));
@@ -155,6 +185,7 @@ void snake_move(void)
 		return;
 		//return 필요함 
 	}
+
 	goprint(snake_tail->x, snake_tail->y, "  ");
 	snake_tail->next = snake_head;
 	snake_head = snake_tail;

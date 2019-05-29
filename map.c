@@ -24,7 +24,7 @@ void map_boundary(int Map_Size)                             /* Print the boundar
     goprint(Map_Size, Map_Size, "H");
 }
 
-void map_block(int Map_Size)                      /* Print the outer blocks */
+void map_block(int Map_Size)
 {
     int i;
     BLOCK *p = NULL;
@@ -39,6 +39,7 @@ void map_block(int Map_Size)                      /* Print the outer blocks */
         p->next = (BLOCK *)malloc(sizeof(BLOCK));
         p = p->next;
     }
+
     for(i = 1; i < Map_Size - 1; i ++){
         goprint(1, i, "H");
         p->x = 1, p->y = i;
