@@ -2,9 +2,8 @@
 
 extern SNAKE *snake_head;
 extern BLOCK *block_head;
-//extern int map_size;
 FOOD food = {0, 0}, bonus_food = {-1, -1};
-//int bonus = 0, bonus_score;
+
 
 int check_Food_collision()
 {

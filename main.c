@@ -8,13 +8,15 @@
 #pragma warning(disable:4996)
 
 
+gameData snake_control(gameData data);
+
+
 int main()
 {
 	gameData data;
 	data.lose = 0; data.level = 3; data.map_size = 30; data.bonus = 0;
 	data.margin = data.map_size + 5; data.score = 0; data.bonus_score = 0;
 	data.control = 'w'; data.direction = 'w';
-	//data = set_GameData(data);
 
 	while (1)
 	{
@@ -25,11 +27,11 @@ int main()
 		snake_create(data);
 		food_create(data);
 		_getch();
-		snake_control(data);
+		data = snake_control(data);
 		snake_free();
 		if (block_head != NULL)
 			block_free();
-		quit(data);
+		data = quit(data);
 	}
 	return 0;
 }

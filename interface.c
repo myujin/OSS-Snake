@@ -2,14 +2,10 @@
 #include<stdlib.h>
 #pragma warning(disable:4996)
 extern FOOD bonus_food;
-//extern int lose, level, map_size, bonus, bonus_score;
-//extern char control, direction;
 
-//int margin;
 
 gameData set_GameData(gameData data)
 {
-	//lose = 0, level = 3, map_size = 30, score = 0, bonus = 0, margin = map_size + 5;
 	data.lose = 0; data.level = 3; data.map_size = 30; data.bonus = 0;
 	data.margin = data.map_size + 5; data.score = 0; data.bonus_score = 0;
 	data.control = 'w'; data.direction = 'w';
@@ -95,7 +91,7 @@ gameData notice_bonus(gameData data)
 	return data;
 }
 
-void quit(gameData data)
+gameData quit(gameData data)
 {
 	if (data.lose) {
 		system("color 01");
@@ -112,7 +108,9 @@ void quit(gameData data)
 
 	gotoxy(0, 0);
 	while (getchar() != '\n');
+	data = set_GameData(data);
 	system("cls");
+	return data;
 }
 
 void progress_bar(gameData data)

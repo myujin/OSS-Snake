@@ -2,18 +2,17 @@
 #include<stdlib.h>
 #include"interface.h"
 
-//extern int bonus_score, map_size;
+
 extern FOOD food, bonus_food;
 SNAKE *snake_head = NULL, *snake_tail = NULL, *temp, front;
-//char control = 'w', direction = 'w';
-//int lose = 0, score = 0, level = 3;
+
 
 SNAKE check_stage_collision(SNAKE front, gameData data);
 SNAKE* check_get_Food(SNAKE front, SNAKE * snake_head, gameData data);
 int check_Gameover(SNAKE * snake_head);
 void snake_create(gameData data);
-void snake_move(gameData data);
-void snake_control(gameData data);
+gameData snake_move(gameData data);
+gameData snake_control(gameData data);
 void snake_free(void);
 
 void snake_create(gameData data)                                    /* Make the snake at the beginning */
@@ -36,10 +35,9 @@ void snake_create(gameData data)                                    /* Make the 
         goprint(p->x, p->y, "o");
 }
 
-void snake_move(gameData data)
+gameData snake_move(gameData data)
 {
-	int flag = 0;
-
+	
 	switch (data.direction) {
 	case 'w':
 		front.x = snake_head->x;
@@ -78,11 +76,16 @@ void snake_move(gameData data)
 	front = check_stage_collision(front, data);
 	data.lose = check_Gameover(snake_head);
 	if (data.lose == 1)
-		return;
-	snake_head = check_get_Food(front, snake_head, data);
+		return data;
+	else
+	{
+		snake_head = check_get_Food(front, snake_head, data);
+		return data;
+	}
+
 }
 
-void snake_control(gameData data)
+gameData snake_control(gameData data)
 {
 	while (!data.lose) {
 		Sleep(600 / data.level);
@@ -100,9 +103,10 @@ void snake_control(gameData data)
 				else data.direction = data.control;
 			}
 		}
-		snake_move(data);
+		data=snake_move(data);
 	}
 	goprint(snake_head->x, snake_head->y, "  ");
+	return data;
 }
 
 SNAKE check_stage_collision(SNAKE front,gameData data)

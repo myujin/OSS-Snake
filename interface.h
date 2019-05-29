@@ -17,9 +17,9 @@ typedef struct gameData
 gameData set_GameData(gameData data);
 gameData welcome(gameData data);
 gameData notice_bonus(gameData data);
+gameData quit(gameData data);
 
 void tips(gameData data);
-void quit(gameData data);
 void progress_bar(gameData data);
 void removeCursor(void);
 void setConsoleSize(int w, int h);

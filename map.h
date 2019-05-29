@@ -18,7 +18,6 @@ typedef struct BOUNDARY {
 } BOUNDARY;
 
 BLOCK *block_head;
-int map_size;
 
 void map_boundary(int Map_Size);
 void map_block(int Map_Size);
