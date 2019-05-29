@@ -20,8 +20,7 @@ SNAKE *snake_head, *snake_tail;
 int score, level;
 
 
-SNAKE check_stage_collision(SNAKE front);
-
+SNAKE* check_get_Food(SNAKE front, SNAKE * snake_head);
 int check_Gameover(SNAKE * snake_head);
 
 void snake_create(void);

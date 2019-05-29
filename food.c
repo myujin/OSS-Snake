@@ -45,6 +45,7 @@ void food_create(void)
             bonus_food.x = rand() % map_size;
             bonus_food.y = rand() % map_size;
         }
+
         if(bonus_food.x == food.x && bonus_food.y == food.y)
             continue;
 		if (food.x == 0 || food.y == 0 || bonus_food.x == 0 || bonus_food.y == 0)
@@ -54,6 +55,8 @@ void food_create(void)
 		//if (sign)
 		//	sign = 0;
 		sign = 0;
+		//음식이 생성되는 순간에 뱀의 내부에 음식이 생성되었는지를 체크하는 함수
+		//snake.c의 음식 획득함수와는 다른 기능임!!!! 
 		sign = check_Food_collision();
 
 		
