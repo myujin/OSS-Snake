@@ -14,8 +14,8 @@ typedef struct FOOD {
     int y;
 } FOOD;
 
-FOOD food, award_food;
-int award, award_score;
+FOOD food, bonus_food;
+int bonus, bonus_score;
 
 void food_create(void);
 
