@@ -1,8 +1,8 @@
 #include "interface.h"
 #include<stdlib.h>
 #pragma warning(disable:4996)
-extern FOOD award_food;
-extern int lose, level, map_size, award, award_score;
+extern FOOD bonus_food;
+extern int lose, level, map_size, bonus, bonus_score;
 extern char control, direction;
 
 int margin;
@@ -11,7 +11,7 @@ int margin;
 void welcome(void)
 {
 	setConsoleSize(55, 20);
-	lose = 0, level = 3, map_size = 30, score = 0, award = 0, margin = map_size + 5;
+	lose = 0, level = 3, map_size = 30, score = 0, bonus = 0, margin = map_size + 5;
 	control = 'w', direction = 'w';
 	int opt;
 	char map_choice = NULL;
@@ -54,15 +54,15 @@ void tips(void)
 	goprint(margin, 11, "Click to pause / Press \"wsad\" to continue / Press 'p' to quit");
 }
 
-void show_score(void)
+void notice_bonus(void)
 {
-	if (award == 5) {
+	if (bonus == 5) {
 		goprint(margin, 13, "Award Food:");
-		goprint(margin, 14, "??????????");
-		award_score = 100;
-		award = 0;
+		goprint(margin, 14, "0 0 0 0 0 ");
+		bonus_score = 100;
+		bonus = 0;
 	}
-	if (award_food.x == -1) {
+	if (bonus_food.x == -1) {
 		gotoxy(margin, 13);
 		printf("           ");
 		gotoxy(margin, 14);
@@ -92,12 +92,12 @@ void quit(void)
 
 void progress_bar(void)
 {
-	goprint(margin + award_score / 10, 14, " ");
-	if ((award_score--) == 0) {
+	goprint(margin + bonus_score / 10, 14, " ");
+	if ((bonus_score--) == 0) {
 		goprint(margin, 13, "           ");
 		goprint(margin, 14, "                    ");
-		goprint(award_food.x, award_food.y, "  ");
-		award_food.x = -1, award_food.y = -1;
+		goprint(bonus_food.x, bonus_food.y, "  ");
+		bonus_food.x = -1, bonus_food.y = -1;
 	}
 }
 

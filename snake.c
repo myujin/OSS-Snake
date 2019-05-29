@@ -1,8 +1,8 @@
 #include "snake.h"
 #include<stdlib.h>
 
-extern int award_score, map_size;
-extern FOOD food, award_food;
+extern int bonus_score, map_size;
+extern FOOD food, bonus_food;
 SNAKE *snake_head = NULL, *snake_tail = NULL, *temp, front;
 char control = 'w', direction = 'w';
 int lose = 0, score = 0, level = 3;
@@ -30,7 +30,7 @@ void snake_control(void)
 {
 	while (!lose) {
 		Sleep(600 / level);
-		if (award_food.x != -1)
+		if (bonus_food.x != -1)
 			progress_bar();
 		if (_kbhit()) {
 			control = _getch();
@@ -113,19 +113,19 @@ void snake_move(void)
 			p2 = p2->next;
 		}
 	}
-	if ((front.x == food.x && front.y == food.y) || (front.x == award_food.x && front.y == award_food.y)) {
+	if ((front.x == food.x && front.y == food.y) || (front.x == bonus_food.x && front.y == bonus_food.y)) {
 		temp = (SNAKE *)malloc(sizeof(SNAKE));
 		*temp = front;
 		temp->next = snake_head;
 		snake_head = temp;
 		goprint(snake_head->x, snake_head->y, "io");
-		if (front.x == award_food.x) {
-			score += award_score / 2 * level;
-			award_food.x = -1, award_food.y = -1, award_score = 100;
-			show_score();
+		if (front.x == bonus_food.x) {
+			score += bonus_score / 2 * level;
+			bonus_food.x = -1, bonus_food.y = -1, bonus_score = 100;
+			notice_bonus();
 		}
 		else {
-			award++;
+			bonus++;
 			score += level;
 			food_create();
 		}

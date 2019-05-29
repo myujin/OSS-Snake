@@ -9,7 +9,7 @@
 
 void welcome(void);
 void tips(void);
-void show_score(void);
+void notice_bonus(void);
 void quit(void);
 void progress_bar(void);
 void removeCursor(void);

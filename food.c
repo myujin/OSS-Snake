@@ -3,8 +3,8 @@
 extern SNAKE *snake_head;
 extern BLOCK *block_head;
 extern int map_size;
-FOOD food = {0, 0}, award_food = {-1, -1};
-int award = 0, award_score;
+FOOD food = {0, 0}, bonus_food = {-1, -1};
+int bonus = 0, bonus_score;
 
 void food_create(void)
 {
@@ -15,13 +15,13 @@ void food_create(void)
         srand(time(NULL));
         food.x = rand() % map_size;
         food.y = rand() % map_size;
-        if(award == 5){                                    /* Create award food */
-            award_food.x = rand() % map_size;
-            award_food.y = rand() % map_size;
+        if(bonus == 5){                                    /* Create award food */
+            bonus_food.x = rand() % map_size;
+            bonus_food.y = rand() % map_size;
         }
-        if(award_food.x == food.x && award_food.y == food.y)
+        if(bonus_food.x == food.x && bonus_food.y == food.y)
             continue;
-		if (food.x == 0 || food.y == 0 || award_food.x == 0 || award_food.y == 0)
+		if (food.x == 0 || food.y == 0 || bonus_food.x == 0 || bonus_food.y == 0)
 			continue;
 
 		//이 코드의 위치에 따라 다른 버그가 발생함.. 조건문에 따라서 sign 변수값을 각각 다르게 작성해주어야 할 것 같음 
@@ -32,14 +32,14 @@ void food_create(void)
         for(p1 = snake_head, p2 = block_head; p1 != NULL || p2 != NULL;){
 
             if(p1 != NULL){
-                if((food.x == p1->x && food.y == p1->y) || (award_food.x == p1->x && award_food.y == p1->y)){
+                if((food.x == p1->x && food.y == p1->y) || (bonus_food.x == p1->x && bonus_food.y == p1->y)){
                     sign = 1;
                     break;
                 }
                 p1 = p1->next;
             }
             if(p2 != NULL){
-                if((food.x == p2->x && food.y == p2->y) || (award_food.x == p2->x && award_food.y == p2->y)){
+                if((food.x == p2->x && food.y == p2->y) || (bonus_food.x == p2->x && bonus_food.y == p2->y)){
                     sign = 1;
                     break;
                 }
@@ -49,7 +49,7 @@ void food_create(void)
 		
     }while(sign);
     goprint(food.x, food.y, "∵");
-    if(award == 5)
-        goprint(award_food.x, award_food.y, "∽");
-    show_score();
+    if(bonus == 5)
+        goprint(bonus_food.x, bonus_food.y, "∽");
+    notice_bonus();
 }
