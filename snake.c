@@ -87,7 +87,8 @@ void snake_move(void)
 		front.y = snake_head->y;
 		break;
 	}
-	if (front.x == map_size)                                /* Here we allow the snake to penetrate the boundary */
+	/*
+	if (front.x == map_size)                                
 		front.x = 1;
 	if (front.x == 0)
 		front.x = map_size - 1;
@@ -95,6 +96,7 @@ void snake_move(void)
 		front.y = 1;
 	if (front.y == 0)
 		front.y = map_size - 1;
+	*/
 	for (p1 = snake_head, p2 = block_head; p1 != snake_tail || p2 != NULL;) {
 		if (p1 != snake_tail) {
 			if (front.x == p1->x && front.y == p1->y) {
@@ -113,6 +115,7 @@ void snake_move(void)
 			p2 = p2->next;
 		}
 	}
+
 	if ((front.x == food.x && front.y == food.y) || (front.x == bonus_food.x && front.y == bonus_food.y)) {
 		temp = (SNAKE *)malloc(sizeof(SNAKE));
 		*temp = front;
@@ -125,7 +128,7 @@ void snake_move(void)
 			notice_bonus();
 		}
 		else {
-			bonus++;
+			//bonus++;
 			score += level;
 			food_create();
 		}
