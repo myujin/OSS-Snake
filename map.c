@@ -33,6 +33,12 @@ void Map_block(int map_size)
     BLOCK *p = NULL;
     block_head = (BLOCK *)malloc(sizeof(BLOCK));
 
+	if (block_head == NULL)
+	{
+		printf("Failed to allocate memory!\n");
+		exit(1);
+	}
+
     for(i = 0, p = block_head; i < map_size; i ++)
 	{
         Go_print(i, 1, "H");

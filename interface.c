@@ -20,6 +20,11 @@ void Welcome(void)
 	printf("1. Quick game\n2. Customized game\n3. Exit\n\n*** Please play in English Input Method ***\n");
 
 	opt = _getch() - '0';
+	while (!(opt == 1 || opt == 2 || opt == 3))
+	{
+		printf("Please enter the keys of 1,2 and 3\n");
+		opt = _getch() - '0';
+	}
 	switch (opt) {
 	case 1:
 		break;
@@ -39,6 +44,8 @@ void Welcome(void)
 		break;
 	case 3:
 		exit(0);
+	default:
+		break;
 	}
 	system("cls");
 	if (map_choice == 'y' || map_choice == 'Y')
