@@ -220,6 +220,8 @@ void Snake_move(void)
 		front.x = snake_head->x + 1;
 		front.y = snake_head->y;
 		break;
+	default:
+		break;
 	}
 	
 	front = check_stage_collision(front);
