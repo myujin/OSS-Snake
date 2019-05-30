@@ -10,9 +10,9 @@ void map_boundary(int Map_Size)                             /* Print the boundar
     int i;
     boundary.x = Map_Size;
     boundary.y = Map_Size;
+
     for(i = 0; i < Map_Size; i ++)
         goprint(Map_Size, i, "H");
-
     for(i = 0; i < Map_Size; i ++)
         goprint(i, Map_Size, "H");
 

@@ -14,11 +14,16 @@ int main()
 		welcome();
 		removeCursor();
 		tips();
+
 		map_boundary(map_size);
 		snake_create();
 		food_create();
+
+		//아무 키나 누르면 게임을 시작함 
 		_getch();
+
 		snake_control();
+
 		snake_free();
 		if (block_head != NULL)
 			block_free();

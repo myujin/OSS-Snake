@@ -1,7 +1,12 @@
 #ifndef SNAKE_H_INCLUDED
 #define SNAKE_H_INCLUDED
 
-/* This module is to create the snake body and control the movement of the snake */
+/*
+
+snake.h 파일은 snake game에서 핵심이라 할 수 있는 뱀의 몸 부분을 생성하고,
+뱀의 움직임을 제어하는 기능을 제공하는 파일입니다. 
+
+*/
 
 #include <stdlib.h>
 #include <conio.h>
@@ -17,12 +22,11 @@ typedef struct SNAKE {
 } SNAKE;
 
 SNAKE *snake_head, *snake_tail;
-int score, level;
-
+extern char control, direction;
+extern int lose, score, level;
 
 SNAKE* check_get_Food(SNAKE front, SNAKE * snake_head);
 int check_Gameover(SNAKE * snake_head);
-
 void snake_create(void);
 void snake_control(void);
 void snake_move(void);

@@ -1,18 +1,18 @@
 #include "interface.h"
+#include "snake.h"
+#include "food.h"
+#include "map.h"
 #include<stdlib.h>
 #pragma warning(disable:4996)
-extern FOOD bonus_food;
-extern int lose, level, map_size, bonus, bonus_score;
-extern char control, direction;
 
 int margin;
-
 
 void welcome(void)
 {
 	setConsoleSize(55, 20);
 	lose = 0, level = 3, map_size = 30, score = 0, bonus = 0, margin = map_size + 5;
 	control = 'w', direction = 'w';
+
 	int opt;
 	char map_choice = NULL;
 	goprint(4, 4, "Welcome to the Snake by Lst");
