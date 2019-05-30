@@ -48,14 +48,14 @@ void Welcome(void)
 		break;
 	}
 	system("cls");
+	SetConsoleSize(140, 40);
+
 	if (map_choice == 'y' || map_choice == 'Y')
 		Map_block(map_size);
 }
 
 void Tips(void)
 {
-	SetConsoleSize(140, 40);
-
 	Go_to_xy(margin, 5);
 	printf("Level: %d", level);
 
