@@ -4,23 +4,31 @@
 FOOD food = { 0,0 }, bonus_food = { -1,-1 };
 int bonus = 0, bonus_score = 10;
 
-int check_Food_collision()
+int Check_food_collision()
 {
 	SNAKE *p1;
 	BLOCK *p2;
 	int sign = 0;
 
-	for (p1 = snake_head, p2 = block_head; p1 != NULL || p2 != NULL;) {
-
-		if (p1 != NULL) {
-			if ((food.x == p1->x && food.y == p1->y) || (bonus_food.x == p1->x && bonus_food.y == p1->y)) {
+	for (p1 = snake_head; p1 != NULL;) 
+	{
+		if (p1 != NULL)
+		{
+			if ((food.x == p1->x && food.y == p1->y) || (bonus_food.x == p1->x && bonus_food.y == p1->y)) 
+			{
 				sign = 1;
 				break;
 			}
 			p1 = p1->next;
 		}
-		if (p2 != NULL) {
-			if ((food.x == p2->x && food.y == p2->y) || (bonus_food.x == p2->x && bonus_food.y == p2->y)) {
+	}
+
+	for (p2 = block_head; p2 != NULL;) 
+	{
+		if (p2 != NULL)
+		{
+			if ((food.x == p2->x && food.y == p2->y) || (bonus_food.x == p2->x && bonus_food.y == p2->y))
+			{
 				sign = 1;
 				break;
 			}
@@ -30,7 +38,7 @@ int check_Food_collision()
 	return sign;
 }
 
-void food_create(void)
+void Food_create(void)
 {
     int sign = 1;
 
@@ -39,7 +47,8 @@ void food_create(void)
         food.x = rand() % map_size;
         food.y = rand() % map_size;
 
-        if(bonus == 5){ 
+        if(bonus == 5)
+		{ 
             bonus_food.x = rand() % map_size;
             bonus_food.y = rand() % map_size;
         }
@@ -55,13 +64,13 @@ void food_create(void)
 		sign = 0;
 		//음식이 생성되는 순간에 뱀의 내부에 음식이 생성되었는지를 체크하는 함수
 		//snake.c의 음식 획득함수와는 다른 기능임!!!! 
-		sign = check_Food_collision();
+		sign = Check_food_collision();
 
 		
     }while(sign);
 
-    goprint(food.x, food.y, "∵");
+    Go_print(food.x, food.y, "∵");
     if(bonus == 5)
-        goprint(bonus_food.x, bonus_food.y, "∽");
-    notice_bonus();
+        Go_print(bonus_food.x, bonus_food.y, "∽");
+    Notice_bonus();
 }

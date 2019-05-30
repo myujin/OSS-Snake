@@ -13,12 +13,12 @@ interface.h 파일은 게임을 플레이할 때
 #include "snake.h"
 #include "goprint.h"
 
-void welcome(void);
-void tips(void);
-void notice_bonus(void);
-void quit(void);
-void progress_bar(void);
-void removeCursor(void);
-void setConsoleSize(int w, int h);
+void Welcome(void);
+void Tips(void);
+void Notice_bonus(void);
+void Quit(void);
+void Progress_bar(void);
+void RemoveCursor(void);
+void SetConsoleSize(int w, int h);
 
 #endif // INTERFACE_H_INCLUDED

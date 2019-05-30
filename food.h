@@ -21,7 +21,7 @@ typedef struct FOOD {
 extern int bonus, bonus_score;
 extern FOOD food, bonus_food;
 
-int check_Food_collision();
-void food_create(void);
+int Check_food_collision();
+void Food_create(void);
 
 #endif // FOOD_H_INCLUDED

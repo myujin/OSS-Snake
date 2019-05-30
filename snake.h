@@ -25,11 +25,11 @@ SNAKE *snake_head, *snake_tail;
 extern char control, direction;
 extern int lose, score, level;
 
-SNAKE* check_get_Food(SNAKE front, SNAKE * snake_head);
-int check_Gameover(SNAKE * snake_head);
-void snake_create(void);
-void snake_control(void);
-void snake_move(void);
-void snake_free(void);
+SNAKE* Check_get_Food(SNAKE front, SNAKE * snake_head);
+int Check_Gameover(SNAKE * snake_head);
+void Snake_create(void);
+void Snake_control(void);
+void Snake_move(void);
+void Snake_free(void);
 
 #endif // SNAKE_H_INCLUDED

@@ -25,12 +25,9 @@ typedef struct BOUNDARY {
 BLOCK *block_head;
 extern int map_size;
 
-void map_boundary(int Map_Size);
-void map_block(int Map_Size);
-void map_1(void);
-void map_2(void);
-void map_3(void);
-void block_free(void);
-BLOCK *block_create();
+void Map_boundary(int map_size);
+void Map_block(int map_size);
+void Block_free(void);
+
 
 #endif // MAP_H_INCLUDED
