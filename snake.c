@@ -9,13 +9,13 @@ int lose = 0, score = 0, level = 3;
 
 void Snake_create(void)                                   
 {
-
     SNAKE *p = NULL;
     snake_head = (SNAKE *)malloc(sizeof(SNAKE));
 
 	if (snake_head == NULL)
 	{
 		printf("Failed to allocate memory!\n");
+		exit(1);
 	}
 	else
 	{
@@ -31,6 +31,7 @@ void Snake_create(void)
 		if (p->next == NULL)
 		{
 			printf("Failed to allocate memory!\n");
+			exit(1);
 		}
 		else
 		{
@@ -42,9 +43,7 @@ void Snake_create(void)
 			for (p = snake_head; p != NULL; p = p->next)
 				Go_print(p->x, p->y, "o");
 		}
-		
 	}
-    
 }
 
 void Snake_control(void)
@@ -67,14 +66,12 @@ void Snake_control(void)
 				//뱀의 현재 이동 방향 direction과 입력받은 키 값 control이 동일한 경우와 정반대인 경우가 아닐 때
 				// direction값을 control값으로 변경한다. (뱀의 이동방향을 변경한다)
 				
-
 				if ((direction == 'w' || direction == 'W') && (control == 's' || control == 'S'));
 				else if ((direction == 's' || direction == 'S') && (control == 'w' || control == 'W'));
 				else if ((direction == 'a' || direction == 'A') && (control == 'd' || control == 'D'));
 				else if ((direction == 'd' || direction == 'D') && (control == 'a' || control == 'A'));
 				else direction = control;
 				
-
 			}
 		}
 		Snake_move();
@@ -149,8 +146,12 @@ SNAKE* Check_get_Food(SNAKE front,SNAKE * snake_head)
 {
 	if ((front.x == food.x && front.y == food.y) || (front.x == bonus_food.x && front.y == bonus_food.y))
 	{
-
 		temp = (SNAKE *)malloc(sizeof(SNAKE));
+		if (temp == NULL)
+		{
+			printf("Failed to allocate memory!\n");
+			exit(1);
+		}
 		*temp = front;
 		temp->next = snake_head;
 		snake_head = temp;
