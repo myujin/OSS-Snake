@@ -1,7 +1,11 @@
 #ifndef FOOD_H_INCLUDED
 #define FOOD_H_INCLUDED
 
-/* This module offer the function of creating food and print the food */
+/*
+
+Food.h 파일은 Snake-Game에서 음식의 생성 및 출력에 대한 기능을 담당하는 파일입니다.
+
+*/
 
 #include <stdlib.h>
 #include <time.h>
@@ -14,10 +18,10 @@ typedef struct FOOD {
     int y;
 } FOOD;
 
-FOOD food, bonus_food;
-int bonus, bonus_score;
-int check_Food_collision();
+extern int bonus, bonus_score;
+extern FOOD food, bonus_food;
 
-void food_create(void);
+int Check_food_collision();
+void Food_create(void);
 
 #endif // FOOD_H_INCLUDED
