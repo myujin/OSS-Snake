@@ -70,7 +70,9 @@ void Food_create(void)
     }while(sign);
 
     Go_print(food.x, food.y, "бё");
+
     if(bonus == 5)
         Go_print(bonus_food.x, bonus_food.y, "бя");
+
     Notice_bonus();
 }
