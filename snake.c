@@ -7,6 +7,18 @@ SNAKE *snake_head = NULL, *snake_tail = NULL, *temp, front;
 char control = 'w', direction = 'w';
 int lose = 0, score = 0, level = 3;
 
+void Print_Snake(SNAKE *snake_head)
+{
+	SNAKE *p;
+	for (p = snake_head; p != NULL; p = p->next)
+		Go_print(p->x, p->y, "o");
+}
+
+void Remove_Snake(SNAKE *snake_tail)
+{
+	Go_print(snake_tail->x, snake_tail->y, "  ");
+}
+
 void Snake_create(void)                                   
 {
     SNAKE *p = NULL;
@@ -28,6 +40,7 @@ void Snake_create(void)
 		p->y = snake_head->y + 1;
 
 		p->next = (SNAKE *)malloc(sizeof(SNAKE));
+
 		if (p->next == NULL)
 		{
 			printf("Failed to allocate memory!\n");
@@ -40,8 +53,7 @@ void Snake_create(void)
 			snake_tail->y = snake_head->y + 2;
 			snake_tail->next = NULL;
 
-			for (p = snake_head; p != NULL; p = p->next)
-				Go_print(p->x, p->y, "o");
+			Print_Snake(snake_head);
 		}
 	}
 }
@@ -76,7 +88,6 @@ void Snake_control(void)
 		}
 		Snake_move();
 	}
-	Go_print(snake_head->x, snake_head->y, "  ");
 }
 
 SNAKE check_stage_collision(SNAKE front)
@@ -141,28 +152,37 @@ int Check_Gameover(SNAKE * snake_head)
 	return lose;
 }
 
+SNAKE* Add_Snake(SNAKE front,SNAKE * snake_head)
+{
+	temp = (SNAKE *)malloc(sizeof(SNAKE));
+	if (temp == NULL)
+	{
+		printf("Failed to allocate memory!\n");
+		exit(1);
+	}
+	*temp = front;
+	temp->next = snake_head;
+	snake_head = temp;
+	Go_print(snake_head->x, snake_head->y, "o");
+	return snake_head;
+}
 
 SNAKE* Check_get_Food(SNAKE front,SNAKE * snake_head)
 {
+
 	if ((front.x == food.x && front.y == food.y) || (front.x == bonus_food.x && front.y == bonus_food.y))
 	{
-		temp = (SNAKE *)malloc(sizeof(SNAKE));
-		if (temp == NULL)
-		{
-			printf("Failed to allocate memory!\n");
-			exit(1);
-		}
-		*temp = front;
-		temp->next = snake_head;
-		snake_head = temp;
-		Go_print(snake_head->x, snake_head->y, "o");
 
-		if (front.x == bonus_food.x) {
+		snake_head = Add_Snake(front,snake_head);
+
+		if (front.x == bonus_food.x) 
+		{
 			score += bonus_score / 2 * level;
 			bonus_food.x = -1, bonus_food.y = -1, bonus_score = 100;
 			Notice_bonus();
 		}
-		else {
+		else
+		{
 			bonus++;
 			score += level;
 			Food_create();
@@ -170,7 +190,7 @@ SNAKE* Check_get_Food(SNAKE front,SNAKE * snake_head)
 	}
 	else
 	{
-		Go_print(snake_tail->x, snake_tail->y, "  ");
+		Remove_Snake(snake_tail);
 		snake_tail->next = snake_head;
 		snake_head = snake_tail;
 		snake_tail = temp;
