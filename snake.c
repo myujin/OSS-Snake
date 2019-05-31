@@ -122,31 +122,26 @@ int Check_Gameover(SNAKE * snake_head)
 	//p1에 대한 반복문 : 뱀의 머리와 몸통끼리의 충돌 검사 
 	for (p1 = snake_head; p1 != snake_tail;)
 	{
-		if (p1 != snake_tail) 
+		if (front.x == p1->x && front.y == p1->y)
 		{
-			if (front.x == p1->x && front.y == p1->y) 
-			{
-				lose = 1;
-				break;
-			}
-			if (p1->next == snake_tail)
-				temp = p1;
-			p1 = p1->next;
+			lose = 1;
+			break;
 		}
+		if (p1->next == snake_tail)
+			temp = p1;
+		p1 = p1->next;
+
 	}
 
 	// p2에 대한 반복문: 맵 경계와 뱀의 충돌 검사
 	for (p2 = block_head;p2 != NULL;) 
 	{
-		if (p2 != NULL) 
+		if (front.x == p2->x && front.y == p2->y)
 		{
-			if (front.x == p2->x && front.y == p2->y) 
-			{
-				lose = 1;
-				break;
-			}
-			p2 = p2->next;
+			lose = 1;
+			break;
 		}
+		p2 = p2->next;
 	}
 
 	return lose;
@@ -164,6 +159,7 @@ SNAKE* Add_Snake(SNAKE front,SNAKE * snake_head)
 	temp->next = snake_head;
 	snake_head = temp;
 	Go_print(snake_head->x, snake_head->y, "o");
+
 	return snake_head;
 }
 

@@ -9,6 +9,7 @@ int margin;
 
 void Welcome(void)
 {
+	//게임을 시작했을 때 게임과 관련된 정보를 세팅하는 함수 
 	SetConsoleSize(55, 20);
 	lose = 0, level = 3, map_size = 30, score = 0, bonus = 0, margin = map_size + 5;
 	control = 'w', direction = 'w';
@@ -75,6 +76,8 @@ void Notice_bonus(void)
 		bonus_score = 100;
 		bonus = 0;
 	}
+	else;
+
 	if (bonus_food.x == -1)
 	{
 		Go_to_xy(margin, 13);
@@ -82,6 +85,7 @@ void Notice_bonus(void)
 		Go_to_xy(margin, 14);
 		printf("                    ");
 	}
+	else;
 
 	Go_to_xy(margin, 3);
 	printf("Your score: %d", score);
