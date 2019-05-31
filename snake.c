@@ -207,8 +207,6 @@ SNAKE* Check_get_Food(SNAKE front,SNAKE * snake_head)
 
 void Snake_move(void)
 {
-	int flag = 0;
-
 	switch (direction) 
 	{
 	case 'w':

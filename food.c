@@ -4,7 +4,7 @@
 FOOD food = { 0,0 }, bonus_food = { -1,-1 };
 int bonus = 0, bonus_score = 10;
 
-int Check_food_collision()
+int Check_food_collision(void)
 {
 	SNAKE *p1;
 	BLOCK *p2;
