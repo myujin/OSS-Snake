@@ -2,7 +2,7 @@
 #include "snake.h"
 #include "food.h"
 #include "map.h"
-#include<stdlib.h>
+#include <stdlib.h>
 #pragma warning(disable:4996)
 
 int margin;
@@ -124,7 +124,7 @@ void Progress_bar(void)
 	}
 }
 
-void RemoveCursor()
+void RemoveCursor(void)
 {
 	CONSOLE_CURSOR_INFO curInfo;
 	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
