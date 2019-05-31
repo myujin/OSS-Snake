@@ -72,6 +72,15 @@ void Map_block(int map_size)
     for(p = block_head; p != NULL; p = p->next);
 }
 
+void Remove_Screen(int map_size)
+{
+	for (int k = 1; k < map_size; k++)
+		for (int i = 1; i < map_size; i++)
+		{
+			Go_print(k, i, " ");
+		}
+}
+
 void Block_free(void)
 {
     BLOCK *p1, *p2;

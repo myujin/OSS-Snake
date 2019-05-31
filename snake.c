@@ -191,12 +191,14 @@ SNAKE* Check_get_Food(SNAKE front,SNAKE * snake_head)
 	else
 	{
 		Remove_Snake(snake_tail);
+
 		snake_tail->next = snake_head;
 		snake_head = snake_tail;
 		snake_tail = temp;
 		snake_tail->next = NULL;
 		snake_head->x = front.x;
 		snake_head->y = front.y;
+
 		Go_print(snake_head->x, snake_head->y, "o");
 	}
 	return snake_head;
@@ -207,7 +209,8 @@ void Snake_move(void)
 {
 	int flag = 0;
 
-	switch (direction) {
+	switch (direction) 
+	{
 	case 'w':
 		front.x = snake_head->x;
 		front.y = snake_head->y - 1;

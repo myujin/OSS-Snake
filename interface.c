@@ -90,6 +90,7 @@ void Notice_bonus(void)
 void Quit(void)
 {
 	if (lose) {
+		Remove_Screen(map_size);
 		system("color 01");
 		Sleep(100);
 		system("color 0F");

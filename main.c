@@ -14,7 +14,7 @@
   원본 개발자 깃허브 주소 : https://github.com/SnakeSkinMan
   소스코드 개발 : myujin,4z7l
   프로그램 목표: 소스코드를 가독성 등의 측면에서 기존의 소스코드보다 개선시키는 것
-  MIT 라이선스를 따릅니다. 
+  이 프로젝트는 MIT 라이선스를 따릅니다.
 
   [English version]
   original source code developer : SnakeSkinMan
